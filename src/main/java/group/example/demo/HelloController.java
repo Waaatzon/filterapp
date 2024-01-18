@@ -13,6 +13,12 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.stage.FileChooser;
+import java.io.File;
+import javafx.scene.SnapshotParameters;
+import java.awt.image.BufferedImage;
+
+
 
 import java.io.IOException;
 
@@ -159,6 +165,17 @@ public class HelloController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void loadImage(ActionEvent e) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            Image image = new Image(file.toURI().toString());
+            mainImage.setImage(image);
+        }
+    }
+
 
     /*
     public void blur(ActionEvent e) {
